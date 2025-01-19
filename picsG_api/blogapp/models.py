@@ -5,18 +5,19 @@ from django.utils.text import slugify
 from django.utils import timezone
 
 
+
 class CustomUser(AbstractUser):
   bio = models.TextField(null=True, blank=True)
-  profile_picture = models.ImageField(upload_to='profile_image', blank=True, null=True)
-  facebook = models.URLField(max_length=255, blank=True, null=True)
-  youtube = models.URLField(max_length=255, blank=True, null=True)
-  instagram = models.URLField(max_length=255, blank=True, null=True)
-  twitter = models.URLField(max_length=255, blank=True, null=True)
+  profile_picture = models.ImageField(upload_to='profile_image', null=True, blank=True)
+  facebook = models.URLField(max_length=255, null=True, blank=True)
+  instagram = models.URLField(max_length=255, null=True, blank=True)
+  youtube = models.URLField(max_length=255, null=True, blank=True)
+  twitter = models.URLField(max_length=255, null=True, blank=True)
 
   def __str__(self):
     return self.username
-  
 
+  
 
 class Blog(models.Model):
   CATEGORY = (
@@ -40,7 +41,6 @@ class Blog(models.Model):
   class Meta:
     ordering = ['-published_date']
 
-
   def __str__(self):
     return self.title
   
@@ -57,3 +57,4 @@ class Blog(models.Model):
       self.published_date = timezone.now
 
       super().save(*args, **Kwargs)
+  
